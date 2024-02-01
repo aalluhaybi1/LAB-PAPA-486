@@ -21,7 +21,7 @@ app.listen(port, () => {
 });*/
 const express = require('express')
 const app = express()
-const port = process.env.PORT || 5500;
+const port = process.env.PORT || 5501;
 // set the view engine to ejs
 let path = require('path');
 app.set('view engine', 'ejs');
