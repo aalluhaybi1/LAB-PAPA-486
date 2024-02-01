@@ -38,14 +38,19 @@ app.get('/', function(req, res) {
     myTypeClient: myTypeServer
 
   });
-  
+
 });
+
 
 
 app.get('/send', function (req, res) {
   
-    res.send('Hello World from Express <br><a href="/">home</a>')
+  res.send('Hello World from Express <br><a href="/">home</a>')
 })
+
+app.get('/repo', function(req, res) {
+  res.send('This is the repo route  <br><a href="/">home</a>');
+});
 
 // app.listen(3000)
 
