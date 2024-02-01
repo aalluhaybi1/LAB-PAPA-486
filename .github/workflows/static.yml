@@ -20,6 +20,7 @@
   </style>
 
   <body style="margin-top: 88px;">
+  
     <!-- TODO: fix inline style at some point -->
     
     <nav class="navbar fixed-top navbar-light bg-light navbar-expand-sm">
