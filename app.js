@@ -34,8 +34,8 @@ let myTypeServer = "9️⃣ The Peacemaker ✌🏻";
 app.get('/', function(req, res) {
 
   res.render('index', {
-   
-    myTypeClient: myTypeServer 
+
+    myTypeClient: myTypeServer
 
   });
   
