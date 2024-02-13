@@ -12,6 +12,15 @@ app.set('views', path.join(__dirname, 'views'));
 
 let myTypeServer = "🌟 Dreaming of Graduation 🎓";
 
+
+const client = new MongoClient(process.env.URI, {
+  serverApi: {
+    version: ServerApiVersion.v1,
+    strict: true,
+    deprecationErrors: true,
+  }
+});
+
 app.get('/', function(req, res) {
 
   res.render('index', {
