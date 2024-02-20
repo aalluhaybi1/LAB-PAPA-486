@@ -1,19 +1,20 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 5000;
+const express = require('express');
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const app = express();
+const port = process.env.PORT || 3000 ; 
 
-// set the view engine to ejs
+
 let path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 
-// use res.render to load up an ejs view file
-
 let myTypeServer = "🌟 Dreaming of Graduation 🎓";
 
+//const mongoURI = process.env.URI;
+require('dotenv').config();
 
-const client = new MongoClient(process.env.URI, {
+const mongoURI = process.env.URI;
+const client = new MongoClient(mongoURI, {
   serverApi: {
     version: ServerApiVersion.v1,
     strict: true,
@@ -21,29 +22,39 @@ const client = new MongoClient(process.env.URI, {
   }
 });
 
-app.get('/', function(req, res) {
+async function run() {
+  try {
+    await client.connect();
+    const result = await client.db("lab_papa-database").collection("papa-collection").find().toArray();
+    console.log("cxnDB result: ", result);
+    console.log("Oinged your deployment. you successfully connected to MongoDB!");
 
+  } finally {
+
+    await client.close();
+  }
+
+}
+
+run().catch(console.dir);
+
+app.get('/', function (req, res) {
   res.render('index', {
-
     myTypeClient: myTypeServer
-
   });
-
 });
-
-
 
 app.get('/send', function (req, res) {
-  
-  res.send('Hello World from Express <br><a href="/">home</a>')
-})
-
-app.get('/Source Code', function(req, res) {
-  res.send();
+  res.send('Hello World from Express <br><a href="/">home</a>');
 });
 
-// app.listen(3000)
+app.get('/source-code', function (req, res) {
+  
+  res.send('Source code goes here');
+});
 
 app.listen(port, () => {
-  console.log(`nov app listening on port ${port}`)
-})
+  console.log(`papa app listening on port ${port}`);
+});
+
+
