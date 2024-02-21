@@ -1,18 +1,20 @@
-const express = require('express')
-const app = express()
-const port = process.env.PORT || 5000;
+require('dotenv').config();
+const express = require('express');
+const app = express();
+const port = process.env.PORT || 5500;
 const { MongoClient, ServerApiVersion } = require('mongodb');
+const bodyParser = require('body-parser');
 
-// set the view engine to ejs
+// Set the view engine to ejs
 let path = require('path');
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-// use res.render to load up an ejs view file
-
+// Define the type string
 let myTypeServer = "🌟 Dreaming of Graduation 🎓";
 
-
+// Create a MongoClient with a MongoClientOptions object to set the Stable API version
 const client = new MongoClient(process.env.URI, {
   serverApi: {
     version: ServerApiVersion.v1,
@@ -21,29 +23,53 @@ const client = new MongoClient(process.env.URI, {
   }
 });
 
-app.get('/', function(req, res) {
+// Define an asynchronous function to connect to MongoDB and fetch data
+async function run() {
+  try {
+    await client.connect();
+    const result = await client.db("lab_papa-database").collection("papa-collection").find().toArray();
+    return result;
+  } finally {
+    await client.close();
+  }
+}
+
+// Define a route to handle reading data from MongoDB
+app.get('/read', async (req,res) => {
+
+  let myResultServer = await run(); 
+
+  console.log("myResultServer:", myResultServer[0].userName);
+
+
 
   res.render('index', {
-
-    myTypeClient: myTypeServer
+    myTypeClient: myTypeServer,
+    myResultClient: null
 
   });
 
-});
+
+}); 
+run().catch(console.dir);
 
 
 
-app.get('/send', function (req, res) {
+app.get('/', function(req, res) {
+
+  res.render('index', {
+   
+    myTypeClient: myTypeServer 
+
+  });
   
-  res.send('Hello World from Express <br><a href="/">home</a>')
-})
-
-app.get('/Source Code', function(req, res) {
-  res.send();
+});
+// Define a route to send a simple response
+app.get('/send', (req, res) => {
+  res.send('Hello World from Express <br><a href="/">home</a>');
 });
 
-// app.listen(3000)
-
+// Start the server
 app.listen(port, () => {
-  console.log(`nov app listening on port ${port}`)
-})
+  console.log(`papa app listening on port ${port}`);
+});
