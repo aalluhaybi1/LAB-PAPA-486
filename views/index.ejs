@@ -4,9 +4,19 @@
 
 <p>I'm Ayman Alluhaybi</p>
 
+<p><%= myResultClient.length %></p>
+
+    <% for (var i=0; i< myResultClient.length; i++ ) { %>
+    
+        <li> <%= myResultClient[i].userName %> </li>
+    
+    <% } %> 
+
+    
+<li> I <%= myTypeClient %>in This Semester.</p>
 
 
-<p>I <%= myTypeClient %> in This Semester.</p>
+
 
 <form method="get" action="/name">
   <p>Tell us your name! Or something: </p>
