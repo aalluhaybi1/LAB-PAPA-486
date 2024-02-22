@@ -8,7 +8,7 @@ const uri = 'mongodb+srv://aalluhaybi1:NMklop90@lab-papa-486.n2dknyc.mongodb.net
 
 // set the view engine to ejs
 let path = require('path');
-app.set('views engine', 'ejs');
+app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'views'));
 app.use(bodyParser.urlencoded({ extended: true }))
 
