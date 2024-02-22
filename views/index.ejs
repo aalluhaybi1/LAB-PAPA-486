@@ -4,20 +4,29 @@
 
 <p>I'm Ayman Alluhaybi</p>
 
+<% if (myResultClient && myResultClient.length > 0) { %>
+  <p>Number of results: <%= myResultClient.length %></p>
+  <ul>
+    <% for (var i = 0; i < myResultClient.length; i++) { %>
+      <li><%= myResultClient[i].userName %></li>
+    <% } %>
+  </ul>
+<% } else { %>
+  <p>No results found.</p>
+<% } %>
 
-
-<p>I <%= myTypeClient %> in This Semester.</p>
+<li>I <%= myTypeClient %> in This Semester.</li>
 
 <form method="get" action="/name">
   <p>Tell us your name! Or something: </p>
   <input type="text" name="ejsFormName" value="<%= myTypeClient %>">
   <input type="submit">
 </form>
+
 <button class="btn btn-primary">Bootstrap working?</button>
+
 <footer>
   Sent from a file on my node server, <a href="https://github.com/aalluhaybi1/LAB-PAPA-486.git" target="_blank">Source Code</a>
 </footer>
-
-
 
 <%- include('partials/html-end.ejs') %>
