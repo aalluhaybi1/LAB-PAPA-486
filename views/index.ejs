@@ -1,22 +1,38 @@
 <%- include('partials/html-start.ejs') %>
 
-<h1>Welcome World from EJS.</h1>
+<h1>Hello World.</h1>
 
-<p>I'm Ayman Alluhaybi</p>
+<p>I'm Ayman Alluhaybi.</p>
+    
+
+    <p><%= myResultClient.length %></p>
+
+    <% for (var i=0; i< myResultClient.length; i++ ) { %>
+    
+        <li> <%= myResultClient[i].userName %> </li>
+    
+    <% } %> 
+
+    
+<li> I  <%= myTypeClient %>in This Semester.</p>
+
+    <form method="get" action="/name">
+        <p>Tell us your name! Or something: </p>
+        <input type="text" name="ejsFormName" value=" <%=myTypeClient %> "> 
+        <input type="submit">
+      </form><br></br>
+      <button class="btn btn-primary">boostrap working?</button>
 
 
 
-<p>I <%= myTypeClient %> in This Semester.</p>
+    <footer> Render Page :
 
-<form method="get" action="/name">
-  <p>Tell us your name! Or something: </p>
-  <input type="text" name="ejsFormName" value="<%= myTypeClient %>">
-  <input type="submit">
-</form>
-<button class="btn btn-primary">Bootstrap working?</button>
-<footer>
-  Sent from a file on my node server, <a href="https://github.com/aalluhaybi1/LAB-PAPA-486.git" target="_blank">Source Code</a>
-</footer>
+    <a href="https://lab-papa-486.onrender.com">Render <br></a> 
+
+    Source Code: <a href="https://aalluhaybi1.github.io/LAB-PAPA-486" target="_blank">GitHub Repo</a>
+
+</footer><br></br>
+
 
 
 
