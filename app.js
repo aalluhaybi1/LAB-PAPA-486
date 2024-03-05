@@ -28,7 +28,7 @@ const client = new MongoClient(process.env.URI, {
 async function run() {
   try {
     await client.connect();
-    const result = await client.db("lab_papa-database").collection("papa-collection").find().toArray();
+    const result = await client.db("papa_lab").collection("papa_lab").find().toArray();
     return result;
   } finally {
     await client.close();
