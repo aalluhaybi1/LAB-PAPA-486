@@ -4,18 +4,9 @@
 
 <p>I'm Ayman Alluhaybi</p>
 
-<% if (myResultClient && myResultClient.length > 0) { %>
-  <p>Number of results: <%= myResultClient.length %></p>
-  <ul>
-    <% for (var i = 0; i < myResultClient.length; i++) { %>
-      <li><%= myResultClient[i].userName %></li>
-    <% } %>
-  </ul>
-<% } else { %>
-  <p>No results found.</p>
-<% } %>
 
-<li>I <%= myTypeClient %> in This Semester.</li>
+
+<p>I <%= myTypeClient %> in This Semester.</p>
 
 <form method="get" action="/name">
   <p>Tell us your name! Or something: </p>
